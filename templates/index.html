@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+FitBuddy | Generate Plan
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="hero">
+
+    <div
+        class="light-rays-container"
+        data-light-rays
+        data-rays-origin="top-center"
+        data-rays-color="#00ffff"
+        data-rays-speed="1.5"
+        data-light-spread="0.8"
+        data-ray-length="1.2"
+        data-follow-mouse="true"
+        data-mouse-influence="0.1"
+        data-noise-amount="0.1"
+        data-distortion="0.05"
+        aria-hidden="true"
+    ></div>
+
+    <div class="hero-copy">
+
+        <p class="eyebrow">
+            AI FITNESS PLAN GENERATOR
+        </p>
+
+
+        <h1>
+
+            Your plan.<br>
+
+            <span>Your pace.</span><br>
+
+            Your progress.
+
+        </h1>
+
+
+        <p class="sub">
+
+            Generate a personalized 7-day
+            workout plan and a practical
+            nutrition or recovery tip.
+
+        </p>
+
+
+        <div class="chips">
+
+            <span>
+                7-Day Plan
+            </span>
+
+            <span>
+                AI Powered
+            </span>
+
+            <span>
+                Feedback Updates
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <form
+        class="card form-card"
+        action="/generate-workout"
+        method="post"
+    >
+
+        <h2>
+            Build your FitBuddy plan
+        </h2>
+
+
+        {% if error %}
+
+        <div class="alert">
+
+            {{ error }}
+
+        </div>
+
+        {% endif %}
+
+
+
+        <label>
+
+            Name
+
+            <input
+                type="text"
+                name="name"
+                required
+                maxlength="120"
+                placeholder="Your name"
+            >
+
+        </label>
+
+
+
+        <label>
+
+            User ID
+
+            <input
+                type="text"
+                name="user_id"
+                required
+                maxlength="80"
+                placeholder="Example: FB001"
+            >
+
+        </label>
+
+
+
+        <div class="grid-2">
+
+
+            <label>
+
+                Age
+
+                <input
+                    type="number"
+                    name="age"
+                    min="13"
+                    max="100"
+                    required
+                    placeholder="18"
+                >
+
+            </label>
+
+
+
+            <label>
+
+                Weight (kg)
+
+                <input
+                    type="number"
+                    name="weight"
+                    min="20"
+                    max="400"
+                    step="0.1"
+                    required
+                    placeholder="70"
+                >
+
+            </label>
+
+
+        </div>
+
+
+
+        <label>
+
+            Fitness goal
+
+            <select
+                name="goal"
+                required
+            >
+
+                <option value="weight loss">
+                    Weight loss
+                </option>
+
+                <option value="muscle gain">
+                    Muscle gain
+                </option>
+
+                <option value="general wellness">
+                    General wellness
+                </option>
+
+                <option value="flexibility">
+                    Flexibility
+                </option>
+
+            </select>
+
+        </label>
+
+
+
+        <label>
+
+            Workout intensity
+
+            <select
+                name="intensity"
+                required
+            >
+
+                <option value="low">
+                    Low
+                </option>
+
+                <option
+                    value="medium"
+                    selected
+                >
+                    Medium
+                </option>
+
+                <option value="high">
+                    High
+                </option>
+
+            </select>
+
+        </label>
+
+
+
+        <button
+            class="btn"
+            type="submit"
+        >
+
+            Generate My Plan →
+
+        </button>
+
+
+        <p class="tiny">
+
+            General wellness guidance only.
+            Stop if you feel pain or unusual symptoms.
+
+        </p>
+
+
+    </form>
+
+
+</section>
+
+
+{% endblock %}

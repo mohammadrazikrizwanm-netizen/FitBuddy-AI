@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+FitBuddy | Admin
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="center-page">
+
+
+    <form
+        class="card form-card"
+        action="/view-all-users"
+        method="get"
+    >
+
+
+        <p class="eyebrow">
+
+            ADMIN DASHBOARD
+
+        </p>
+
+
+        <h1>
+
+            Enter admin key
+
+        </h1>
+
+
+        {% if error %}
+
+        <div class="alert">
+
+            {{ error }}
+
+        </div>
+
+        {% endif %}
+
+
+        <label>
+
+            Admin key
+
+            <input
+                type="password"
+                name="key"
+                required
+            >
+
+        </label>
+
+
+        <button
+            class="btn"
+            type="submit"
+        >
+
+            Open Dashboard
+
+        </button>
+
+
+    </form>
+
+
+</section>
+
+
+{% endblock %}

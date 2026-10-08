@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+FitBuddy | Admin Dashboard
+
+{% endblock %}
+
+
+{% block content %}1
+
+
+<section class="page">
+
+
+    <div class="section-head">
+
+
+        <div>
+
+            <p class="eyebrow">
+                ADMIN DASHBOARD
+            </p>
+
+            <h1>
+                All Users & Plans
+            </h1>
+
+        </div>
+
+
+        <a
+            class="btn secondary"
+            href="/"
+        >
+
+            Back to App
+
+        </a>
+
+
+    </div>
+
+
+
+    {% if not users %}
+
+
+    <div class="card empty">
+
+        <h2>
+            No users yet
+        </h2>
+
+        <p>
+            Generate the first FitBuddy
+            plan from the home page.
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+
+
+    {% for user in users %}
+
+
+    {% set plan = plans.get(user.user_id) %}
+
+
+    <article class="card admin-card">
+
+
+        <div class="admin-top">
+
+
+            <div>
+
+                <h2>
+                    {{ user.name }}
+                </h2>
+
+
+                <p class="sub">
+
+                    ID: {{ user.user_id }}
+
+                    •
+
+                    {{ user.goal|title }}
+
+                    •
+
+                    {{ user.intensity|title }}
+
+                </p>
+
+            </div>
+
+
+            <span class="status">
+
+                {% if plan and plan.updated_plan %}
+
+                Updated
+
+                {% else %}
+
+                Original
+
+                {% endif %}
+
+            </span>
+
+
+        </div>
+
+
+
+        <div class="admin-grid">
+
+
+            <div>
+
+                <h3>
+                    Profile
+                </h3>
+
+
+                <p>
+
+                    Age:
+                    {{ user.age }}
+
+                    <br>
+
+                    Weight:
+                    {{ user.weight }} kg
+
+                </p>
+
+            </div>
+
+
+
+            <div>
+
+                <h3>
+                    Original Plan
+                </h3>
+
+
+                <pre>
+
+{{ plan.original_plan if plan else "—" }}
+
+                </pre>
+
+            </div>
+
+
+
+            <div>
+
+                <h3>
+                    Updated Plan
+                </h3>
+
+
+                <pre>
+
+{% if plan and plan.updated_plan %}
+
+{{ plan.updated_plan }}
+
+{% else %}
+
+No update yet
+
+{% endif %}
+
+                </pre>
+
+            </div>
+
+
+        </div>
+
+
+    </article>
+
+
+    {% endfor %}
+
+
+</section>
+
+
+{% endblock %}
